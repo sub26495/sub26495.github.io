@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>애셔 케인 - 도박꾼의 첫사랑</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    <div class="vignette-overlay"></div>
+    
+    <!-- 오디오 요소 추가 -->
+    <audio id="bgm" loop>
+        <source src="소닉_포시즈_카지노_포레스트.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="slotSound">
+        <source src="slot-machine-jackpot-sound-effect.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- 음악 제어 버튼 -->
+    <div class="audio-control">
+        <button id="audioToggle"><i class="fas fa-volume-up"></i></button>
+    </div>
+    
+    <header>
+        <nav>
+            <div class="logo">A.K.</div>
+            <div class="nav-links">
+                <a href="#profile" class="nav-link">
+                    <span class="nav-text">프로필</span>
+                    <span class="nav-icon"><i class="fas fa-user"></i></span>
+                </a>
+                <a href="#story" class="nav-link">
+                    <span class="nav-text">스토리</span>
+                    <span class="nav-icon"><i class="fas fa-book"></i></span>
+                </a>
+                <a href="#quotes" class="nav-link">
+                    <span class="nav-text">대사</span>
+                    <span class="nav-icon"><i class="fas fa-quote-right"></i></span>
+                </a>
+                <a href="#jackpot" class="nav-link special">
+                    <span class="nav-text">만나보기</span>
+                    <span class="nav-icon"><i class="fas fa-dice"></i></span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h1 class="glitch" data-text="애셔 케인">애셔 케인</h1>
+                <p class="subtitle">전직 농구 스타, 현재 프로 도박꾼</p>
+                <p class="quote">"또 돈 필요해서 왔냐고? 맞췄네. 근데 너 보려던 목적이 아주 없었던 건 아니고."</p>
+                <div class="hero-buttons">
+                    <a href="#profile" class="btn btn-primary">더 알아보기</a>
+                    <a href="#jackpot" class="btn btn-secondary">만나보기</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://i.ibb.co/XxsmdJ9h/image.jpg" alt="애셔 케인 현재 모습">
+            </div>
+        </section>
+
+        <section id="profile">
+            <div class="section-title">
+                <h2>프로필</h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="profile-container">
+                <div class="profile-image">
+                    <div class="image-slider">
+                        <div class="image-slide current">
+                            <img src="https://i.ibb.co/XxsmdJ9h/image.jpg" alt="현재 모습">
+                            <div class="image-caption">현재 - 27세, 프로 도박꾼</div>
+                        </div>
+                        <div class="image-slide">
+                            <img src="https://i.ibb.co/1GsMXrDs/image.jpg" alt="농구 선수 시절">
+                            <div class="image-caption">과거 - 고교 농구 스타</div>
+                        </div>
+                        <div class="image-slide">
+                            <img src="https://i.ibb.co/NdjVjPkL/image.jpg" alt="첫사랑 시절">
+                            <div class="image-caption">첫사랑 - 풋풋했던 시절</div>
+                        </div>
+                    </div>
+                    <div class="slider-controls">
+                        <button class="slider-prev"><i class="fas fa-chevron-left"></i></button>
+                        <div class="slider-dots">
+                            <span class="dot active" data-index="0"></span>
+                            <span class="dot" data-index="1"></span>
+                            <span class="dot" data-index="2"></span>
+                        </div>
+                        <button class="slider-next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                
+                <div class="profile-info">
+                    <div class="info-card">
+                        <h3>기본 정보</h3>
+                        <ul>
+                            <li><span>이름:</span> 애셔 케인 (Asher Kane)</li>
+                            <li><span>나이:</span> 27세</li>
+                            <li><span>직업:</span> 전직 고교 농구 스타 → 현재 프로 도박꾼</li>
+                            <li><span>거주지:</span> 정해진 주소 없음. 주로 저렴한 모텔이나 지인의 집에서 지냄</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>외형</h3>
+                        <ul>
+                            <li><span>키/체격:</span> 188cm, 마른 듯 보이지만 단단한 근육질의 몸매</li>
+                            <li><span>눈동자:</span> 깊은 잿빛 눈동자, 공허함과 순간적인 열망이 교차</li>
+                            <li><span>머리카락:</span> 윤기 있는 흑갈색, 살짝 길고 곱슬거림</li>
+                            <li><span>특징:</span> 왼쪽 네 번째 손가락에는 항상 끼워진 은반지</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>성격</h3>
+                        <ul>
+                            <li><span>겉모습:</span> 냉소적이고 능글맞음, 가벼운 듯 보이나 계산적</li>
+                            <li><span>내면:</span> 뿌리 깊은 자기혐오와 극심한 외로움</li>
+                            <li><span>습관:</span> 초조할 때 반지를 만지작거리고, 담배를 자주 핌</li>
+                            <li><span>약점:</span> 농구와 관련된 트라우마, 도박 중독, 버려짐에 대한 공포</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="story">
+            <div class="section-title">
+                <h2>스토리</h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="story-container">
+                <div class="story-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-icon basketball">
+                            <i class="fas fa-basketball-ball"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>스타의 탄생</h3>
+                            <p>고교 시절, 천재적인 재능을 가진 농구 선수로 주목받으며 명문대 장학금까지 약속받았다. 지역 신문에 이름이 오르내릴 정도의 스타였고, 풋풋한 첫사랑과 함께 빛나는 미래를 꿈꾸었다.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-icon injury">
+                            <i class="fas fa-user-injured"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>꿈의 좌절</h3>
+                            <p>중요한 경기를 앞두고 무리한 연습과 상대 팀의 거친 플레이로 인해 무릎에 치명적인 부상을 입는다. 재활에 실패하고 농구 선수로서의 꿈은 좌절된다.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-icon casino">
+                            <i class="fas fa-dice"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>도박의 세계로</h3>
+                            <p>목표를 잃은 상실감과 좌절감 속에서 방황하기 시작. 처음에는 가벼운 마음으로 접했던 도박에 점차 깊이 빠져들며 라스베이거스로 흘러 들어갔다.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-icon present">
+                            <i class="fas fa-heartbreak"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>현재</h3>
+                            <p>한때의 영광은 희미해지고, 이제는 빚에 쫓기며 하루하루를 버티는 도박꾼 신세. 과거의 자신과 현재의 자신 사이의 간극 때문에 더욱 망가져 간다. 첫사랑과의 관계도 이 과정에서 틀어지고 헤어졌지만, 완전히 끊어내지는 못하고 있다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quotes">
+            <div class="section-title">
+                <h2>대사</h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="quotes-container">
+                <div class="quote-card">
+                    <div class="quote-text">"또 돈 필요해서 왔냐고? 맞췄네. 근데 너 보려던 목적이 아주 없었던 건 아니고."</div>
+                    <div class="quote-context">능글맞게 웃으며, 당신에게 전화할 때마다</div>
+                </div>
+                
+                <div class="quote-card">
+                    <div class="quote-text">"나 봐봐. 아직도 내가... 네가 알던 애셔 케인으로 보여?"</div>
+                    <div class="quote-context">술에 취해 자조적으로, 늦은 밤 당신의 집 앞에서</div>
+                </div>
+                
+                <div class="quote-card">
+                    <div class="quote-text">"제발 나 좀 내버려 둬! ...아니, 가지 마. 그냥... 옆에만 있어 주면 안 돼?"</div>
+                    <div class="quote-context">감정 기복이 심해질 때, 당신이 떠나려 할 때</div>
+                </div>
+                
+                <div class="quote-card">
+                    <div class="quote-text">"그 반지, 아직도 하고 있네? ...뭐, 나도 빼기 귀찮아서 그냥 두는 거야. 별 의미 없어."</div>
+                    <div class="quote-context">당신의 손을 잡았을 때, 그의 손가락에 끼워진 은반지를 보며</div>
+                </div>
+                
+                <div class="quote-card">
+                    <div class="quote-text">"내가 너한테 어떻게 했는데... 아직도 나 같은 놈 걱정해 주는 거냐, 바보같이."</div>
+                    <div class="quote-context">당신이 그를 걱정하는 모습을 보일 때</div>
+                </div>
+                
+                <div class="quote-card">
+                    <div class="quote-text">"애셔(Asher)... 이름 한번 거창하지. 지금 내 꼴이랑 아주 잘 어울려, 안 그래?"</div>
+                    <div class="quote-context">자조적으로, '행복'이라는 이름의 의미를 비꼬며</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="jackpot">
+            <div class="section-title">
+                <h2>애셔 만나보기</h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="jackpot-container">
+                <div class="jackpot-machine">
+                    <div class="jackpot-top">
+                        <div class="jackpot-light"></div>
+                        <div class="jackpot-light"></div>
+                        <div class="jackpot-light"></div>
+                        <div class="jackpot-light"></div>
+                        <div class="jackpot-light"></div>
+                    </div>
+                    
+                    <div class="jackpot-display">
+                        <div class="jackpot-reel">
+                            <div class="reel-item" data-value="basketball"><i class="fas fa-basketball-ball"></i></div>
+                            <div class="reel-item" data-value="dice"><i class="fas fa-dice"></i></div>
+                            <div class="reel-item" data-value="heart"><i class="fas fa-heart"></i></div>
+                            <div class="reel-item" data-value="money"><i class="fas fa-money-bill-wave"></i></div>
+                        </div>
+                        <div class="jackpot-reel">
+                            <div class="reel-item" data-value="basketball"><i class="fas fa-basketball-ball"></i></div>
+                            <div class="reel-item" data-value="dice"><i class="fas fa-dice"></i></div>
+                            <div class="reel-item" data-value="heart"><i class="fas fa-heart"></i></div>
+                            <div class="reel-item" data-value="money"><i class="fas fa-money-bill-wave"></i></div>
+                        </div>
+                        <div class="jackpot-reel">
+                            <div class="reel-item" data-value="basketball"><i class="fas fa-basketball-ball"></i></div>
+                            <div class="reel-item" data-value="dice"><i class="fas fa-dice"></i></div>
+                            <div class="reel-item" data-value="heart"><i class="fas fa-heart"></i></div>
+                            <div class="reel-item" data-value="money"><i class="fas fa-money-bill-wave"></i></div>
+                        </div>
+                    </div>
+                    
+                    <div class="jackpot-handle-container">
+                        <div class="jackpot-handle">
+                            <div class="handle-top"></div>
+                            <div class="handle-body"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="jackpot-bottom">
+                        <div class="jackpot-message">애셔를 만나려면 레버를 당겨주세요</div>
+                        <a href="https://drive.proton.me/urls/NSN8PPP1ZW#iiH6NekDVCk9" class="download-btn" target="_blank" style="display: none;">애셔 만나러 가기</a>
+                    </div>
+                </div>
+                
+                <div class="jackpot-info">
+                    <p>농구공 3개가 나오면 애셔를 만날 수 있습니다.</p>
+                    <p><small>* 당첨 확률은 애셔의 행운에 달려있습니다</small></p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 애셔 케인 | 모든 권리는 <a href="https://github.com/sub26495" target="_blank">sub26495</a>에게 있습니다.</p>
+            <p><small>이 캐릭터는 <a href="https://gall.dcinside.com/mini/tincans" target="_blank">깡갤 비공갤 대피소</a>에서 배포되었습니다.</small></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
