@@ -17,11 +17,6 @@
     --transition: all 0.3s ease;
 }
 
-@font-face {
-    font-family: 'Vegas';
-    src: url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
-}
-
 html {
     scroll-behavior: smooth;
 }

@@ -14,15 +14,29 @@ document.addEventListener('DOMContentLoaded', function() {
     bgm.volume = 0.3;
     bgm.muted = true; // 처음에는 음소거 상태로 시작
 
-    // 자동 재생 시도 (음소거 상태로)
-    bgm.play().then(() => {
-        console.log('배경 음악이 음소거 상태로 자동 재생됩니다.');
-        // 사운드 아이콘 업데이트
-        audioToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
-        audioToggle.classList.add('muted');
-    }).catch(error => {
-        console.log('자동 재생이 차단되었습니다:', error);
+    // 문서와의 사용자 상호작용 감지 이벤트
+    const userInteractionEvents = ['click', 'touchstart', 'keydown'];
+    
+    // 음악 재생 시도 함수
+    function tryPlayMusic() {
+        bgm.play().then(() => {
+            console.log('배경 음악이 음소거 상태로 자동 재생됩니다.');
+            // 이벤트 리스너 제거
+            userInteractionEvents.forEach(event => {
+                document.removeEventListener(event, tryPlayMusic);
+            });
+        }).catch(error => {
+            console.log('자동 재생 시도 실패:', error);
+        });
+    }
+    
+    // 사용자 상호작용 이벤트 리스너 등록
+    userInteractionEvents.forEach(event => {
+        document.addEventListener(event, tryPlayMusic);
     });
+    
+    // 첫 로드 시에도 시도 (음소거 상태이므로 대부분의 브라우저에서 허용됨)
+    tryPlayMusic();
 
     // 알림 메시지 표시 (처음 방문 시에만)
     if (!hasVisitedBefore) {
@@ -69,6 +83,13 @@ document.addEventListener('DOMContentLoaded', function() {
             // 알림 메시지 숨기기
             if (soundNotification.style.display !== 'none') {
                 hideNotification();
+            }
+            
+            // 음악이 재생 중이 아니면 다시 재생 시도
+            if (bgm.paused) {
+                bgm.play().catch(error => {
+                    console.log('음악 재생 실패:', error);
+                });
             }
         } else {
             // 음소거 설정
