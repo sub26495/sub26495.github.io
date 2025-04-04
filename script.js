@@ -3,41 +3,76 @@ document.addEventListener('DOMContentLoaded', function() {
     const bgm = document.getElementById('bgm');
     const slotSound = document.getElementById('slotSound');
     const audioToggle = document.getElementById('audioToggle');
-    let isMuted = false;
+    const soundNotification = document.getElementById('sound-notification');
+    const closeNotification = document.getElementById('close-notification');
+    let isMuted = true; // 기본적으로 음소거 상태로 시작
 
-    // 브라우저에서 자동 재생 정책으로 인해 사용자 상호작용이 필요할 수 있습니다
-    // 페이지 로드 시 배경 음악 재생 시도
-    try {
-        bgm.volume = 0.3; // 볼륨 조절
+    // 사용자가 이전에 방문한 적이 있는지 확인
+    const hasVisitedBefore = localStorage.getItem('hasVisitedBefore');
+
+    // 배경 음악 초기 설정
+    bgm.volume = 0.3;
+    bgm.muted = true; // 처음에는 음소거 상태로 시작
+
+    // 자동 재생 시도 (음소거 상태로)
+    bgm.play().then(() => {
+        console.log('배경 음악이 음소거 상태로 자동 재생됩니다.');
+        // 사운드 아이콘 업데이트
+        audioToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        audioToggle.classList.add('muted');
+    }).catch(error => {
+        console.log('자동 재생이 차단되었습니다:', error);
+    });
+
+    // 알림 메시지 표시 (처음 방문 시에만)
+    if (!hasVisitedBefore) {
+        // 첫 방문 시 알림 표시
+        setTimeout(() => {
+            soundNotification.style.display = 'block';
+        }, 1000);
         
-        // 사용자 상호작용 이벤트 발생 시 오디오 재생
-        const playAudio = function() {
-            bgm.play().catch(error => {
-                console.log('자동 재생이 차단되었습니다:', error);
-            });
-            // 한 번 성공적으로 재생된 후에는 이벤트 리스너 제거
-            document.removeEventListener('click', playAudio);
-        };
+        // 알림이 자동으로 사라지는 타이머 설정
+        setTimeout(() => {
+            hideNotification();
+        }, 8000);
         
-        // 첫 클릭 시 오디오 재생
-        document.addEventListener('click', playAudio);
-        
-        // 페이지 로드 시 자동 재생 시도
-        bgm.play().catch(error => {
-            console.log('자동 재생이 차단되었습니다. 사용자 상호작용이 필요합니다:', error);
-        });
-    } catch (error) {
-        console.error('오디오 재생 중 오류 발생:', error);
+        // 방문 기록 저장
+        localStorage.setItem('hasVisitedBefore', 'true');
+    } else {
+        // 재방문 시 알림 표시 안 함
+        soundNotification.style.display = 'none';
+    }
+
+    // 알림 닫기 버튼
+    closeNotification.addEventListener('click', function() {
+        hideNotification();
+    });
+
+    // 알림 숨기기 함수
+    function hideNotification() {
+        soundNotification.classList.add('hide-notification');
+        setTimeout(() => {
+            soundNotification.style.display = 'none';
+            soundNotification.classList.remove('hide-notification');
+        }, 500); // 애니메이션 시간과 맞춤
     }
 
     // 음소거 토글 버튼
     audioToggle.addEventListener('click', function() {
         if (isMuted) {
+            // 음소거 해제
+            bgm.muted = false;
             bgm.volume = 0.3;
             audioToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
             audioToggle.classList.remove('muted');
+            
+            // 알림 메시지 숨기기
+            if (soundNotification.style.display !== 'none') {
+                hideNotification();
+            }
         } else {
-            bgm.volume = 0;
+            // 음소거 설정
+            bgm.muted = true;
             audioToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
             audioToggle.classList.add('muted');
         }
@@ -129,8 +164,9 @@ document.addEventListener('DOMContentLoaded', function() {
         jackpotMessage.textContent = '행운을 기다리는 중...';
         downloadBtn.style.display = 'none'; // 버튼 숨기기
         
-        // 슬롯 효과음 재생
+        // 슬롯 효과음 재생 (음소거 상태와 상관없이)
         slotSound.currentTime = 0; // 효과음 처음부터 재생
+        slotSound.muted = false; // 효과음은 항상 들리게
         slotSound.play().catch(error => {
             console.log('효과음 재생 실패:', error);
         });

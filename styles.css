@@ -1211,4 +1211,134 @@ footer {
 .audio-control button.muted {
     color: #666;
     border-color: #666;
+}
+
+/* 사운드 알림 메시지 스타일 */
+.sound-notification {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background-color: rgba(10, 10, 10, 0.9);
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    padding: 15px;
+    z-index: 1001;
+    max-width: 300px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    animation: fadeInUp 0.5s ease forwards;
+    transform: translateY(20px);
+    opacity: 0;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.notification-content i.fa-music {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+}
+
+.notification-content p {
+    flex: 1;
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+#close-notification {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 5px;
+    transition: var(--transition);
+}
+
+#close-notification:hover {
+    color: var(--primary-color);
+}
+
+.hide-notification {
+    animation: fadeOut 0.5s ease forwards;
+}
+
+/* 모바일 환경에서의 사운드 알림 메시지 스타일 */
+@media (max-width: 768px) {
+    .sound-notification {
+        bottom: 70px;
+        right: 15px;
+        max-width: 250px;
+        padding: 12px;
+    }
+    
+    .notification-content p {
+        font-size: 0.85rem;
+    }
+    
+    .audio-control {
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .audio-control button {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sound-notification {
+        bottom: auto;
+        top: 70px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+        padding: 10px;
+    }
+    
+    .notification-content {
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .notification-content p {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    
+    #close-notification {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+    }
+    
+    .audio-control {
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .audio-control button {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
 } 
